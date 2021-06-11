@@ -80,12 +80,13 @@
         console.log(ev.value.style.position = PARAMS.position_handler);
         });
 
-        document.getElementsByClassName("tp-lstv_s")[1].innerHTML += `<option>Reset me</option>`; // ignore console error for now
-
         for(let i = 0 ; i < HTMLC.length ; i++) {
         pane.children[1].options.push( {text: 'item', value: HTMLC[i]}, ); /* push dynamically to PANE instead of static presetKey(s) */
         document.getElementsByClassName("tp-lstv_s")[1].innerHTML += `<option class="options" data-index='${i}' value='${HTMLC[i]}'>${HTMLC[i]}${i}</option>`; /* sync controller list */
+        document.querySelectorAll("[data-index]").forEach((e)=>{return e.addEventListener("click", (e)=>{console.log(e)})});
         }
+
+        document.getElementsByClassName("tp-lstv_s")[1].options.selectedIndex = -1;
 
         // ISSUE 1 : Cannot access Nodelist in the form of string :
         /* document.querySelectorAll(".options").forEach((binder)=>{return binder.addEventListener("click", (e)=>{console.log(e)})}) */
