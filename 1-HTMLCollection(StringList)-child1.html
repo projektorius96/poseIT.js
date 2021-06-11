@@ -49,18 +49,18 @@
    <script>
         const HTMLC = document.getElementsByClassName("child");
         const pane = new Tweakpane.Pane();
-        console.dir(pane.doc_.all); // library reference
+        console.dir(pane.doc_.all); // reference
 
-        var f = function myFunc() {
-            alert("abc");
-        }
+        const POSE = {
+        positionKey: '',
+        };
 
-        const PARAMS = {
-        position_handler: '',
+        const HTMList = {
+        htmlist: '',
         };
 
         // default StringList example :
-        pane.addInput(PARAMS, 'position_handler', {
+        pane.addInput(POSE, 'positionKey', {
         options: {
         static: '', /* = static (as default) */
         relative: 'relative',
@@ -68,35 +68,35 @@
         },
         });
 
-        pane.addBlade({
-        view: 'list',
-        label: 'HTMLC', /* any text string based name label */
-        options: [ /* incoming .push() */
-        /* {text: 'Choose from: ', value: 'init'}, */
-        ],
-        value: 'init', /* Default value from options array */
-        }).on('change', (ev) => {
-        console.log(ev.value);
-        console.log(ev.value.style.position = PARAMS.position_handler);
-        });
-
-        document.getElementsByClassName("tp-lstv_s")[1].innerHTML += `<option>Reset me</option>`; // ignore console error for now
+        /* document.getElementsByClassName("tp-lstv_s")[1].innerHTML += `<option></option>`; */
+        // A FEW IMPORTANT ACCESSORS: 
+        // pane.children[1].options[index].value.addEventListener("click", (e)=>{e.currentTarget.style = PARAMS.position_handler})
+        // document.getElementsByClassName("tp-lstv_s")[1].children[index].addEventListener("click", (e)=>{e.currentTarget.style = PARAMS.position_handler})
+        // pane.children[0].controller_.binding.value.constraint_.constraints[0].options is accessor for addInput()
 
         for(let i = 0 ; i < HTMLC.length ; i++) {
-        pane.children[1].options.push( {text: 'item', value: HTMLC[i]}, ); /* push dynamically to PANE instead of static presetKey(s) */
-        document.getElementsByClassName("tp-lstv_s")[1].innerHTML += `<option class="options" data-index='${i}' value='${HTMLC[i]}'>${HTMLC[i]}${i}</option>`; /* sync controller list */
+            
+        pane.addInput(HTMList, 'positionKey', {
+        options: {
+        static: '',
+        relative: 'relative',
+        absolute: 'absolute',
+        },
+        });
+
         }
 
-        // ISSUE 1 : Cannot access Nodelist in the form of string :
-        /* document.querySelectorAll(".options").forEach((binder)=>{return binder.addEventListener("click", (e)=>{console.log(e)})}) */
-        /* document.getElementsByClassName("tp-lstv_s")[1].childNodes.forEach((binder)=>{return binder.addEventListener("change", (e)=>{console.log("event attached to: ", e)})}) */
+        /* for(let i = 0 ; i < HTMLC.length ; i++) { */
+            
+        /*     let res = Array.from(HTMLC); // document.getElementsByClassName("tp-lstv_s")[1].children
+            console.log(res);
+            res.forEach(function (binder) { binder.addEventListener("click", (e)=> { console.log(e.target.textContent) })});
+         */
 
-        // Interactive document.body.children selection with mouse click :
-        for (var i = 0; i < HTMLC.length; ++i) {
+         /* console.info(HTMLC[i].addEventListener("click", (e)=> { console.log(e.target.nodeName) })); */
 
-            HTMLC.item(i).addEventListener("click", (e)=>{console.log(e.target.style.position = PARAMS.position_handler)});
-        
-        }
+
+        /* } */
    </script>
 </body>
 </html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body,
+        body * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/tweakpane@3.0.2/dist/tweakpane.min.js"></script>
+</head>
+<body class="grandparent">
+    <main class="grandparent father">
+        <article class="grandparent father child"></article>
+        <article class="grandparent father child"></article>
+        <article class="grandparent father child"></article>
+    </main>
+   <script>
+        var HTMLC = document.getElementsByClassName("child");
+        const pane = new Tweakpane.Pane();
+        console.dir(pane.doc_.all); // reference
+
+        pane.addBlade({
+            view: 'list',
+            label: 'HTMLC', /* any text string based name label */
+            options: [
+            /* {text: 'expand', value: 'init'}, */
+            ],
+            value: 'init', /* Default value from options array */
+            }).on('change', (ev) => {
+            console.log(ev);
+            });
+
+        document.getElementsByClassName("tp-lstv_s")[0].innerHTML += `<option>Choose from: </option>`;
+
+        for(let i = 0 ; i < HTMLC.length ; i++) {
+        pane.children[0].options.push( {text: 'item', value: HTMLC[i]}, ); /* push dynamically to PANE instead of static presetKey(s) */
+        document.getElementsByClassName("tp-lstv_s")[0].innerHTML += `<option data-index='${i}' value='${HTMLC[i]}'>${HTMLC[i]}${i}</option>`; /* sync controller list */
+        }
+   </script>
+</body>
+</html>
