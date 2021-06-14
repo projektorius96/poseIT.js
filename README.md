@@ -4,7 +4,7 @@
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
-  <summary>Table of Contents <i>[under construction]</i></summary>
+  <summary>Table of Content <i>[under construction]</i></summary>
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
@@ -36,7 +36,21 @@ Idea of this project is to **make easier for beginners catching up the CSS styli
 
 <!-- GETTING STARTED -->
 ## [Getting Started](#getting-started)
-> ...
+Useful JS accessors used :
+
+    document.querySelectorAll(selector);
+    document.getElementsByClassName(selector)[rowIndexOfPane].childNodes;
+
+## Tweakpane accessors
+<br>
+pane.addInput() :
+
+    pane.children[0].controller_.binding.value.constraint_.constraints[0].options
+
+pane.addBlade() :
+
+    pane.children[indexOfBladeRowinPane].options
+
 <!-- GETTING STARTED -->
 
 <!-- PREREQUISITES -->
@@ -47,7 +61,7 @@ Dependencies used :
 
 <!-- LICENSE -->
 ## [License](#license)
-[licence]()
+### [MIT](https://github.com/projektorius96/poseIT.js/blob/master/LICENSE.txt)
 <!-- LICENSE  -->
 
 <!-- OTHER SECTION ^nth -->
