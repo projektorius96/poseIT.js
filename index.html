@@ -47,7 +47,6 @@
         <article class="grandparent father child bg-orange"></article>
     </main>
    <script>
-        /* const parser = new DOMParser(); */
         const HTMLC = document.getElementsByClassName("child");
         const pane = new Tweakpane.Pane();
         console.dir(pane.doc_.all); // library reference
@@ -80,10 +79,6 @@
         for(let i = 0 ; i < HTMLC.length ; i++) {
         pane.children[1].options.push( {text: 'item', value: HTMLC[i]}, ); // push dynamically to PANE instead of static presetKey(s)
         let domStr = document.getElementsByClassName("tp-lstv_s")[1].innerHTML += `<option class="options" data-index='${i}' value='${HTMLC[i]}'>element: ${HTMLC[i]}</option>`; // sync controller list
-        /* console.log(".childNodes[i]: ", document.getElementsByClassName("tp-lstv_s")[0].childNodes[i]); */
-        /* console.log(".textContent: ", document.querySelectorAll(".options")[i].textContent) */ // [object HTMLElement]
-        /* let deserHTML = parser.parseFromString(domStr, "text/html");
-        deserHTML.body.firstElementChild.addEventListener("change", (e)=>{console.log(e.target)}) */
         }
 
         document.getElementsByClassName("tp-lstv_s")[1].options.selectedIndex = -1; // initial value;
